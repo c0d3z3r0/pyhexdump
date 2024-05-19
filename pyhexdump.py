@@ -30,7 +30,7 @@ def hexdump(data, start_addr=0, addr_len=4):
         str_data += "".join((chr(x) if 32 <= x < 127 else "." for x in _data))
         str_data += " " * (16 - len(_data) - fill)
 
-        if yaddr & 0xff == 0x00 or yaddr == start_addr:
+        if yaddr & 0xff == 0x00 or yaddr == (start_addr & ~0x0f):
             print(header)
 
         print(f'{yaddr:0{addr_len*2}x}: {hex_data}  |{str_data}|')
